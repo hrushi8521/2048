@@ -231,6 +231,7 @@ function checkGameOver() {
 
   // If no moves are possible and no empty tiles -> game over
   document.getElementById("final-score").textContent = score;
+  // update_high_score(score)
   document.getElementById("game-over").classList.remove("hidden");
   document.getElementById("main-content").classList.add("blur");
 }
@@ -314,6 +315,10 @@ function restartGame() {
   document.getElementById("main-content").classList.remove("blur");
   setup(); // Reset board and score
 }
+
+// function update_high_score(score){
+
+// }
 
 function submitScore() {
   let all_scores = JSON.parse(localStorage.getItem('all_scores')) || [];

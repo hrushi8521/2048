@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>2048 Game</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- <link rel="stylesheet" href="style2.css" /> -->
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+
+</head>
+<body>
+  <!-- Welcome Screen -->
+  <div id="welcome-screen">
+    <h1>Welcome to 2048!</h1>
+    <p>Use arrow keys to move. Combine tiles to reach 2048!</p>
+    <button class="yellow-button" onclick="startGame()">Start Game</button>
+  </div>
+<div id="main-content">
+    <h1>2048 Game</h1>
+    <div id="game-board"></div>
+    <h2>Your Score: <span id="score">0</span></h2>
+
+      <!-- Leaderboard -->
+      <!-- Dragable Leaderboard -->
+    <div id="leaderboard-panel">
+      <div id="drag-handle"></div>
+      <h2>Leaderboard</h2>
+      <ul id="scores"></ul>
+    </div>
+</div>
+  
+
+  <!-- Game Over Popup -->
+  <div id="game-over" class="overlay hidden">
+    <div class="popup">
+      <h2>Game Over!</h2>
+      <p>Your score: <span id="final-score"></span></p>
+
+      <form onsubmit="submitScore(event)">
+        <!-- <input type="text" id="player-name" placeholder="Enter name" required /> <br> -->
+        <!-- From Uiverse.io by Praashoo7 --> 
+        <input type="text" autocomplete="off" name="text" class="input" placeholder="Enter Your Name">
+        <br>
+        <button type="submit" class="yellow-button">Submit Score</button>
+      </form>
+
+      <!-- <button class="yellow-button" onclick="restartGame()">Play Again</button> -->
+          <button class="restart-icon-button" onclick="restartGame()" title="Restart Game">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                <path d="M12 5V1L7 6l5 5V7a5 5 0 1 1-5 5H5a7 7 0 1 0 7-7z"
+                  fill="#fff4c2" stroke="#4b3900" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+          </button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

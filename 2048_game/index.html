@@ -1,60 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>2048 Game</title>
-  <link rel="stylesheet" href="style.css" />
-  <!-- <link rel="stylesheet" href="style2.css" /> -->
   <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
-
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <!-- Welcome Screen -->
   <div id="welcome-screen">
     <h1>Welcome to 2048!</h1>
     <p>Use arrow keys to move. Combine tiles to reach 2048!</p>
+    <p class="touch-instructions">On mobile: Swipe in any direction to move tiles!</p>
     <button class="yellow-button" onclick="startGame()">Start Game</button>
   </div>
-<div id="main-content">
-    <h1>2048 Game</h1>
+
+  <div id="main-content">
+    <h2 class="game-title">2048 Game</h2>
+    <h3>Top Player: <span id="top-player">Loading...</span> | Score: <span id="top-score">0</span></h3>
+    <!-- <h3>High Score : <span id="highscore">0</span></h3> -->
     <div id="game-board"></div>
     <h2>Your Score: <span id="score">0</span></h2>
+    
 
-      <!-- Leaderboard -->
-      <!-- Dragable Leaderboard -->
-    <div id="leaderboard-panel">
-      <div id="drag-handle"></div>
-      <h2>Leaderboard</h2>
-      <ul id="scores"></ul>
+    <!-- Leaderboard Button -->
+    <button id="open-leaderboard" class="yellow-button">🏆 Leaderboard</button>
+
+    <!-- Slide-Up Leaderboard -->
+    <div id="leaderboard-modal" class="leaderboard-modal hidden">
+      <div class="leaderboard-content">
+        <span id="close-leaderboard" class="close-btn">&times;</span>
+        <!-- <button class="close-icon-button" onclick="closeLeaderboard()" title="Close Leaderboard">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+            <line x1="6" y1="6" x2="18" y2="18" stroke="#4b3900" stroke-width="2" stroke-linecap="round"/>
+            <line x1="6" y1="18" x2="18" y2="6" stroke="#4b3900" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button> -->
+
+        <h2>Leaderboard</h2>
+        <ul id="scores-list">
+          <!-- Dynamically insert list items here -->
+        </ul>
+      </div>
     </div>
-</div>
-  
+
+
+    <p class="touch-instructions">Swipe to move tiles!</p>
 
   <!-- Game Over Popup -->
   <div id="game-over" class="overlay hidden">
     <div class="popup">
       <h2>Game Over!</h2>
       <p>Your score: <span id="final-score"></span></p>
-
+      
       <form onsubmit="submitScore(event)">
-        <!-- <input type="text" id="player-name" placeholder="Enter name" required /> <br> -->
-        <!-- From Uiverse.io by Praashoo7 --> 
-        <input type="text" autocomplete="off" name="text" class="input" placeholder="Enter Your Name">
+        <input type="text" id="player-name" autocomplete="off" name="text" class="input" placeholder="Enter Your Name" required>
         <br>
         <button type="submit" class="yellow-button">Submit Score</button>
       </form>
-
-      <!-- <button class="yellow-button" onclick="restartGame()">Play Again</button> -->
-          <button class="restart-icon-button" onclick="restartGame()" title="Restart Game">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-                <path d="M12 5V1L7 6l5 5V7a5 5 0 1 1-5 5H5a7 7 0 1 0 7-7z"
-                  fill="#fff4c2" stroke="#4b3900" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-          </button>
+      
+      <button class="restart-icon-button" onclick="restartGame()" title="Restart Game">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+          <path d="M12 5V1L7 6l5 5V7a5 5 0 1 1-5 5H5a7 7 0 1 0 7-7z"
+            fill="#fff4c2" stroke="#4b3900" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
     </div>
   </div>
 
+  <script type="module">
+  import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+
+  const supabaseUrl = "https://owhsyfwrxllmvunusxgu.supabase.co";
+  const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im93aHN5ZndyeGxsbXZ1bnVzeGd1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTMwMTU5MjcsImV4cCI6MjA2ODU5MTkyN30.Y7DDL1sUiXbeIkH_TwNTl0eqFDc_VnV5y6AbgddAuUg";
+  const supabase = createClient(supabaseUrl, supabaseKey);
+
+  window.supabase = supabase; // Make available globally
+</script>
+
   <script src="script.js"></script>
+
+  
 </body>
 </html>
